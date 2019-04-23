@@ -4,11 +4,10 @@ import { Formik } from "formik";
 
 import { CONSENT_SUBMITTED } from "../constants";
 
+window.publishConsent = () => PubSub.publish(CONSENT_SUBMITTED);
+
 const Form = () => (
-  <Formik
-    initialValues={{ name: "" }}
-    onSubmit={() => PubSub.publish(CONSENT_SUBMITTED)}
-  >
+  <Formik initialValues={{ name: "" }} onSubmit={() => window.publishConsent()}>
     {({
       values,
       errors,
