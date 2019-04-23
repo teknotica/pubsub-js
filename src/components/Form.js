@@ -1,13 +1,13 @@
 import React from "react";
+import PubSub from "pubsub-js";
 import { Formik } from "formik";
 
-import { publish } from "./Subscriber";
 import { CONSENT_SUBMITTED } from "../constants";
 
 const Form = () => (
   <Formik
     initialValues={{ name: "" }}
-    onSubmit={() => publish(CONSENT_SUBMITTED, { submitted: true })}
+    onSubmit={() => PubSub.publish(CONSENT_SUBMITTED)}
   >
     {({
       values,
